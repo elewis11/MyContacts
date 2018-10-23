@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_view_details:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                return true;
         /*    case R.id.action_add_contact:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
