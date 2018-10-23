@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         //get the id of the item selected
         switch(item.getItemId()){
             case R.id.action_home:
+                getSupportActionBar().setTitle("Contacts");
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_view_details:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
