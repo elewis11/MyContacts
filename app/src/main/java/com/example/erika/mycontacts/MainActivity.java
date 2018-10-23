@@ -1,5 +1,6 @@
 package com.example.erika.mycontacts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    // declare an Intent - used to start Activities
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +39,28 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        //get the id of the item selected
+        switch(item.getItemId()){
+            case R.id.action_home:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+        /*    case R.id.action_add_contact:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, AddContact.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+                return true;
+     /*       case R.id.action_delete:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, DeleteContact.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+                return true;*/
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
