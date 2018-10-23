@@ -22,7 +22,11 @@
         <activity
             android:name=".AddContact"
             android:label="@string/title_activity_add_contact"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewDetails"
+            android:label="@string/action_view_details"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
