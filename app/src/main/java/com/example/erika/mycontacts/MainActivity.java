@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Contacts");
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,15 +45,14 @@ public class MainActivity extends AppCompatActivity {
         //get the id of the item selected
         switch(item.getItemId()){
             case R.id.action_home:
-                getSupportActionBar().setTitle("Contacts");
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
-        /*    case R.id.action_add_contact:
+            case R.id.action_add_contact:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
-                intent.putExtra("_id", id);
+            /*    intent.putExtra("_id", id);*/
                 startActivity(intent);
                 return true;
      /*       case R.id.action_delete:
