@@ -21,8 +21,44 @@ public class ViewDetails extends AppCompatActivity {
         setContentView(R.layout.activity_view_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setTitle("View Contact Details");
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_view_details, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //get the id of the item selected
+        switch(item.getItemId()){
+            case R.id.action_home:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_add_contact:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, AddContact.class);
+                /*    intent.putExtra("_id", id);*/
+                startActivity(intent);
+                return true;
+     /*       case R.id.action_delete:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, DeleteContact.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+                return true;*/
+            case R.id.action_view_details:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                intent = new Intent(this, ViewDetails.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 }

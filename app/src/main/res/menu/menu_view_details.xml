@@ -18,4 +18,9 @@
         android:orderInCategory="3"
         android:title="Delete Contact"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_view_details"
+        android:orderInCategory="4"
+        android:title="View Details"
+        app:showAsAction="never"/>
 </menu>
