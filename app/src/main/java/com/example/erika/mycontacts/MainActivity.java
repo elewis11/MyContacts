@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
-/*
+
         // initialize ListView
         contactListView = (ListView) findViewById(R.id.contactListView);
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-*/      intent = new Intent(this, AddContact.class);
+        intent = new Intent(this, AddContact.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
      * This method gets called when the fabCreateList floating action button gets clicked.
      * It starts the Create List Activity.
      * @param view because the fabCreateList floating action button is considered a view, we must pass the method a View object.
-     *//*
+     */
     public void openContactLists(View view){
         //initialize an Intent for the Contact Lists Activity, start intent.
         intent = new Intent(this, ContactLists.class);
         startActivity(intent);
-    }*/
+    }
 }
