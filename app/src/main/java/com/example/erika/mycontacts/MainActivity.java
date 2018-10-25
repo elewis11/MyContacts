@@ -23,13 +23,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Contacts");
+        intent = new Intent(this, AddContact.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
+                /*    intent.putExtra("_id", id);*/
+                startActivity(intent);
             }
         });
     }
@@ -45,18 +47,18 @@ public class MainActivity extends AppCompatActivity {
         //get the id of the item selected
         switch(item.getItemId()){
             case R.id.action_home:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_add_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, AddContact.class);
             /*    intent.putExtra("_id", id);*/
                 startActivity(intent);
                 return true;
      /*       case R.id.action_delete:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, DeleteContact.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);

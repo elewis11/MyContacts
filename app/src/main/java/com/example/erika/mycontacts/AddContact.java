@@ -9,11 +9,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddContact extends AppCompatActivity {
 
     // declare an Intent - used to start Activities
     Intent intent;
+
+    //declare EditTexts - used to reference the EditTexts in the resource file
+    EditText nameEditText;
+    EditText addressEditText;
+    EditText phoneEditText;
+    EditText emailEditText;
+
+    //declare DBHandler
+    DBHandler dbhandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +34,21 @@ public class AddContact extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Add Contact");
+
+        // initialize EditTexts
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        addressEditText = (EditText) findViewById(R.id.addressEditText);
+        phoneEditText = (EditText) findViewById(R.id.phoneEditText);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+
+        //initialize DBHandler
+        dbhandler = new DBHandler(this, null);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_add_contact, menu);
         return true;
     }
 
@@ -56,5 +76,26 @@ public class AddContact extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    /**
+     * This method gets called when the add_list menu item gets pushed.
+     * @param menuItem because the add_list item that calls this method is a menu item, we must pass the method a MenuItem.
+     */
+    public void createList(MenuItem menuItem){
+        //get data input in EditTexts and store it in Strings
+        String name = nameEditText.getText().toString();
+        String address = addressEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
+        String email = emailEditText.getText().toString();
 
+        //trim Strings and see if any are rqual to an empty String
+        if (name.trim().equals("")){
+            //required data hasn't been input, so display Toast
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+        }
+        else{
+            //required data has been input, update the database and display a different Toast
+        //    dbhandler.ContactList(name, address, phone, email);
+            Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
+        }
+    }
 }
