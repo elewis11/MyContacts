@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DBHandler extends SQLiteOpenHelper {
-  private static final int DATABASE_VERSION = 1;
+        private static final int DATABASE_VERSION = 3;
 private static final String DATABASE_NAME = "contacts.db";
 
 private static final String TABLE_CONTACT_LIST = "contactlist";
@@ -24,11 +24,11 @@ public DBHandler(Context context, SQLiteDatabase.CursorFactory factory){
 
 public void onCreate(SQLiteDatabase sqLiteDatabase){
         String query = "CREATE TABLE " + TABLE_CONTACT_LIST + "(" +
-        COLUMN_LIST_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        COLUMN_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
         COLUMN_LIST_NAME + " TEXT, " +
         COLUMN_LIST_ADDRESS + " TEXT, " +
         COLUMN_LIST_PHONE + " TEXT, " +
-        COLUMN_LIST_EMAIL + " TEXT" +
+        COLUMN_LIST_EMAIL + " TEXT " +
         ");";
 
         sqLiteDatabase.execSQL(query);
@@ -41,14 +41,17 @@ public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVers
         }
 
 public void addContactList(String name, String address, String phone, String email){
+    //get writeable reference to my contacts database
         SQLiteDatabase db = getWritableDatabase();
 
+        //intiialize an empty ContentValues object
         ContentValues values = new ContentValues();
 
-
+    //put key-value pairs in the ContentValues object. The key must be the name of a column and the vlaue is the value to be inserted in the column.
         values.put(COLUMN_LIST_NAME, name);
         values.put(COLUMN_LIST_ADDRESS, address);
         values.put(COLUMN_LIST_PHONE, phone);
+        values.put(COLUMN_LIST_EMAIL, email);
 
         //insert values into the shopping list table
         db.insert(TABLE_CONTACT_LIST, null, values);
