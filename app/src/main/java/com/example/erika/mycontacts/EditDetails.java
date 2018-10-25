@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class ViewDetails extends AppCompatActivity {
+public class EditDetails extends AppCompatActivity {
 
     // declare an Intent - used to start Activities
     Intent intent;
@@ -18,7 +20,7 @@ public class ViewDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_details);
+        setContentView(R.layout.activity_edit_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -26,7 +28,7 @@ public class ViewDetails extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_details, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_details, menu);
         return true;
     }
 
@@ -63,7 +65,7 @@ public class ViewDetails extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
 
+    }
 
 }
