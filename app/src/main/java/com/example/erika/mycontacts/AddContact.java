@@ -78,23 +78,23 @@ public class AddContact extends AppCompatActivity {
     }
     /**
      * This method gets called when the add_list menu item gets pushed.
-     * @param menuItem because the add_list item that calls this method is a menu item, we must pass the method a MenuItem.
+     * @param view because the add_list item that calls this method is a menu item, we must pass the method a MenuItem.
      */
-    public void createList(MenuItem menuItem){
+    public void createContact(View view){
         //get data input in EditTexts and store it in Strings
         String name = nameEditText.getText().toString();
         String address = addressEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
         String email = emailEditText.getText().toString();
 
-        //trim Strings and see if any are rqual to an empty String
+        //trim Strings and see if any are equal to an empty String
         if (name.trim().equals("")){
             //required data hasn't been input, so display Toast
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
         else{
             //required data has been input, update the database and display a different Toast
-        //    dbhandler.ContactList(name, address, phone, email);
+            dbhandler.addContactList(name, address, phone, email);
             Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
         }
     }

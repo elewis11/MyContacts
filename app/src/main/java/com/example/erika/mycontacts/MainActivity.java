@@ -17,6 +17,15 @@ public class MainActivity extends AppCompatActivity {
     // declare an Intent - used to start Activities
     Intent intent;
 
+    // declare a DBHandler - used to communicate with the database
+    DBHandler dbHandler;
+
+    // declare a ShoppingLists CursorAdapter - used to link the data in the Cursor to the ListView
+    ContactLists contactListsAdapter;
+
+    // declare a ListView - used to reference the ListView in the resource file
+    ListView contactListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +36,33 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Contacts");
         intent = new Intent(this, AddContact.class);
 
+        // initialize DBHandler
+        dbHandler = new DBHandler(this, null);
+/*
+        // initialize ListView
+        contactListView = (ListView) findViewById(R.id.contactListView);
+
+        // initialize ShoppingLists CursorAdapter with the shopping list data in the database
+        contactListsAdapter = new ContactLists(this, dbHandler.getContactLists(), 0);
+
+        // set CursorAdapter CursorAdapter on ListView
+        contactListView.setAdapter(contactListsAdapter);
+
+        // register OnItemClickListener on ListView
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //initialize an Intent for the View List Activity, start intent.
+                intent = new Intent(MainActivity.this, ViewDetails.class);
+
+                // put the shopping list id of the clicked row in the intent
+                intent.putExtra("_id", id);
+
+                // start the intent
+                startActivity(intent);
+            }
+        });
+*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,4 +110,15 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /**
+     * This method gets called when the fabCreateList floating action button gets clicked.
+     * It starts the Create List Activity.
+     * @param view because the fabCreateList floating action button is considered a view, we must pass the method a View object.
+     *//*
+    public void openContactLists(View view){
+        //initialize an Intent for the Contact Lists Activity, start intent.
+        intent = new Intent(this, ContactLists.class);
+        startActivity(intent);
+    }*/
 }

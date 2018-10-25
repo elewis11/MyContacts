@@ -30,6 +30,8 @@
         android:layout_height="wrap_content"
         android:text="Done"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center" />
+        app:layout_anchorGravity="bottom|center"
+        android:clickable="true"
+        android:onClick="createContact"/>
 
 </android.support.design.widget.CoordinatorLayout>
