@@ -93,6 +93,9 @@ public class AddContact extends AppCompatActivity {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
         else{
+          /*  if (name.trim().equals("")){
+
+            }*/
             //required data has been input, update the database and display a different Toast
             dbhandler.addContactList(name, address, phone, email);
             Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
