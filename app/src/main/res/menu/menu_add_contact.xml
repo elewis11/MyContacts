@@ -4,6 +4,12 @@
     tools:context="com.example.erika.mycontacts.AddContact">
 
     <item
+        android:id="@+id/action_confirm_add_contact"
+        android:onClick="createContact"
+        android:title="@string/action_confirm_add_contact"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_home"
         android:orderInCategory="1"
         android:title="@string/action_home"

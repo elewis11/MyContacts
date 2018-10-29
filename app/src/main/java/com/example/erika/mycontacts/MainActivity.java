@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //initialize an Intent for the View List Activity, start intent.
+                //initialize an Intent for the View Details Activity, start intent.
                 intent = new Intent(MainActivity.this, ViewDetails.class);
 
                 // put the shopping list id of the clicked row in the intent
