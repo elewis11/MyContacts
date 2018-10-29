@@ -76,11 +76,8 @@ public class AddContact extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    /**
-     * This method gets called when the add_list menu item gets pushed.
-     * @param view because the add_list item that calls this method is a menu item, we must pass the method a MenuItem.
-     */
-    public void createContact(View view){
+
+    public void createContact(MenuItem menuItem){
         //get data input in EditTexts and store it in Strings
         String name = nameEditText.getText().toString();
         String address = addressEditText.getText().toString();
@@ -99,6 +96,10 @@ public class AddContact extends AppCompatActivity {
             //required data has been input, update the database and display a different Toast
             dbhandler.addContactList(name, address, phone, email);
             Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
+
+            /* goes back to the MainActivity after the contact has been added */
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 }

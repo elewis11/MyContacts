@@ -21,6 +21,8 @@ public class ContactLists extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ((TextView) view.findViewById(R.id.nameTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("name")));
+       ((TextView) view.findViewById(R.id.addressTextView)).
+                setText(cursor.getString(cursor.getColumnIndex("address")));
         ((TextView) view.findViewById(R.id.phoneTextView)).
                 setText(cursor.getString(cursor.getColumnIndex("phone")));
         ((TextView) view.findViewById(R.id.emailTextView)).

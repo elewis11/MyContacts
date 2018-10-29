@@ -24,14 +24,4 @@
         android:id="@+id/include"
         layout="@layout/content_add_contact" />
 
-    <Button
-        android:id="@+id/doneButton"
-        android:layout_width="177dp"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center"
-        android:clickable="true"
-        android:onClick="createContact"/>
-
 </android.support.design.widget.CoordinatorLayout>
