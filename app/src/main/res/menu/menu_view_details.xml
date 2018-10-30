@@ -15,16 +15,11 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_delete"
-        android:orderInCategory="4"
+        android:orderInCategory="3"
         android:title="Delete Contact"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_edit_contact"
-        android:orderInCategory="6"
+        android:orderInCategory="4"
         android:title="Edit" />
-    <item
-        android:id="@+id/action_view_details"
-        android:orderInCategory="5"
-        android:title="View Details"
-        app:showAsAction="never"/>
 </menu>

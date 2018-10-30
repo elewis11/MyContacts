@@ -52,11 +52,6 @@ public class EditDetails extends AppCompatActivity {
                 intent.putExtra("_id", id);
                 startActivity(intent);
                 return true;*/
-            case R.id.action_view_details:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
-                intent = new Intent(this, ViewDetails.class);
-                startActivity(intent);
-                return true;
             case R.id.action_edit_contact:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, EditDetails.class);

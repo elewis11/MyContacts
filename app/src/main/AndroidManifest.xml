@@ -25,7 +25,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ViewDetails"
-            android:label="@string/action_view_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditDetails"
