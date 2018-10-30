@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 //initialize an Intent for the View Details Activity, start intent.
                 intent = new Intent(MainActivity.this, ViewDetails.class);
 
-                // put the shopping list id of the clicked row in the intent
+                // put the content list id of the clicked row in the intent
                 intent.putExtra("_id", id);
 
                 // start the intent

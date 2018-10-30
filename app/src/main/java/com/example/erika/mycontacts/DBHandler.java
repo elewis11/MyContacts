@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DBHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "contacts.db";
 
     private static final String TABLE_CONTACT_LIST = "contactlist";
@@ -24,11 +24,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE " + TABLE_CONTACT_LIST + "(" +
-                COLUMN_LIST_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LIST_NAME + " TEXT, " +
                 COLUMN_LIST_ADDRESS + " TEXT, " +
                 COLUMN_LIST_PHONE + " TEXT, " +
-                COLUMN_LIST_EMAIL + " TEXT" +
+                COLUMN_LIST_EMAIL + " TEXT " +
                 ");";
 
         sqLiteDatabase.execSQL(query);
@@ -49,6 +49,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIST_NAME, name);
         values.put(COLUMN_LIST_ADDRESS, address);
         values.put(COLUMN_LIST_PHONE, phone);
+        values.put(COLUMN_LIST_EMAIL, email);
 
         //insert values into the shopping list table
         db.insert(TABLE_CONTACT_LIST, null, values);
@@ -86,5 +87,67 @@ public class DBHandler extends SQLiteOpenHelper {
         return dbString;
     }
 
+    public String getContactListAddress(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String dbString = "";
+
+        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
+                " WHERE " + COLUMN_LIST_ID + " = " + id;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.getString(cursor.getColumnIndex("address")) != null) {
+            dbString = cursor.getString(cursor.getColumnIndex("address"));
+        }
+
+        db.close();
+
+        return dbString;
+    }
+
+    public String getContactListNumber(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String dbString = "";
+
+        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
+                " WHERE " + COLUMN_LIST_ID + " = " + id;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.getString(cursor.getColumnIndex("phone")) != null) {
+            dbString = cursor.getString(cursor.getColumnIndex("phone"));
+        }
+
+        db.close();
+
+        return dbString;
+    }
+
+    public String getContactListEmail(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String dbString = "";
+
+        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
+                " WHERE " + COLUMN_LIST_ID + " = " + id;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.getString(cursor.getColumnIndex("email")) != null) {
+            dbString = cursor.getString(cursor.getColumnIndex("email"));
+        }
+
+        db.close();
+
+        return dbString;
+    }
 
 }
