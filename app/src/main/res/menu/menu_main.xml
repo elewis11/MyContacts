@@ -13,9 +13,4 @@
         android:orderInCategory="2"
         android:title="@string/action_add_contact"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_delete"
-        android:orderInCategory="3"
-        android:title="@string/action_delete"
-        app:showAsAction="never" />
 </menu>

@@ -25,12 +25,4 @@
         android:id="@+id/include2"
         layout="@layout/content_edit_details" />
 
-    <Button
-        android:id="@+id/EditDetailsButton"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        app:layout_anchor="@+id/include2"
-        app:layout_anchorGravity="bottom|center" />
-
 </android.support.design.widget.CoordinatorLayout>

@@ -23,6 +23,7 @@ public class EditDetails extends AppCompatActivity {
         setContentView(R.layout.activity_edit_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Edit");
     }
 
     @Override
@@ -43,23 +44,30 @@ public class EditDetails extends AppCompatActivity {
             case R.id.action_add_contact:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
-                /*    intent.putExtra("_id", id);*/
                 startActivity(intent);
                 return true;
-     /*       case R.id.action_delete:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+     /*       case R.id.action_delete_contact:
+                //initialize an Intent for the Edit Activity, start intent, return true if the id in the item selected is for the Edit Activity.
                 intent = new Intent(this, DeleteContact.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);
                 return true;*/
             case R.id.action_edit_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Edit Activity, start intent, return true if the id in the item selected is for the Edit Activity.
                 intent = new Intent(this, EditDetails.class);
                 startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    /**
+     * Method to edit the contact. Receives a MenuItem parameter (button in the menu)
+     * @param menuItem
+     */
+    public void editContact(MenuItem menuItem){
 
     }
 
