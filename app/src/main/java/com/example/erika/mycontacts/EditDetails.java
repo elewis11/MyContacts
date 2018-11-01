@@ -17,6 +17,19 @@ public class EditDetails extends AppCompatActivity {
     // declare an Intent - used to start Activities
     Intent intent;
 
+    Bundle bundle;
+
+    // declare a long to store the id passed from the Main Activity
+    long id;
+
+    // declaring a DBHandler
+    DBHandler dbHandler;
+
+    EditText EditableNameEditText;
+    EditText EditableAddressEditText;
+    EditText EditableNumberEditText;
+    EditText EditableEmailEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +37,29 @@ public class EditDetails extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Edit");
+
+        bundle = this.getIntent().getExtras();
+
+        // get the id in the Bundle
+        id = bundle.getLong("_id");
+
+        // initialize DBHandler
+        dbHandler = new DBHandler(this, null);
+
+        String contactListName = dbHandler.getContactListName((int) id);
+        String contactListAddress = dbHandler.getContactListAddress((int) id);
+        String contactListNumber = dbHandler.getContactListNumber((int) id);
+        String contactListEmail = dbHandler.getContactListEmail((int) id);
+
+        EditableNameEditText = findViewById(R.id.EditableNameEditText);
+        EditableAddressEditText = findViewById(R.id.EditableAddressEditText);
+        EditableNumberEditText = findViewById(R.id.EditableNumberEditText);
+        EditableEmailEditText = findViewById(R.id.EditableEmailEditText);
+
+        EditableNameEditText.setText(contactListName);
+        EditableAddressEditText.setText(contactListAddress);
+        EditableNumberEditText.setText(contactListNumber);
+        EditableEmailEditText.setText(contactListEmail);
     }
 
     @Override
