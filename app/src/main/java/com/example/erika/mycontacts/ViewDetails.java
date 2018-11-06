@@ -95,20 +95,36 @@ public class ViewDetails extends AppCompatActivity {
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_delete_contact:
-             //   deleteContact();
-                return true;
             case R.id.action_edit_contact:
                 //initialize an Intent for the View Details Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, EditDetails.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);
                 return true;
+            case R.id.action_delete_contact:
+                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                deleteContactList();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    public void deleteContactList(){
+        bundle = this.getIntent().getExtras();
+
+        // get the id in the Bundle
+        id = bundle.getLong("_id");
+
+
+        dbHandler.deleteContactList((int) id);
+
+        Toast.makeText(this, "Contact Deleted", Toast.LENGTH_LONG).show();
+
+        /* goes back to the MainActivity after the contact has been added */
+        intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
         /**
          * Method to edit the contact. Receives a MenuItem parameter (button in the menu)
          *//*
@@ -122,7 +138,7 @@ public class ViewDetails extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int id) {
                               Toast.makeText(ViewDetails.this, "Contact Deleted", Toast.LENGTH_LONG).show();
                             /*deleteContact(id);*/
-            /*            }
+         /*               }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -131,7 +147,6 @@ public class ViewDetails extends AppCompatActivity {
                         }
                     });
             // Create the AlertDialog object and return it
-            builder.create();
-        }
-    }*/
+           builder.create();
+        }*/
 }
