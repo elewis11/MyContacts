@@ -173,4 +173,18 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteContactList(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String dbString = "";
+
+        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
+                " WHERE " + COLUMN_LIST_ID + " = " + id;
+
+        //insert values into the contact list table
+        db.delete(TABLE_CONTACT_LIST, COLUMN_LIST_ID + " = " + id, null);
+
+        //close reference to shopper database
+        db.close();
+    }
 }

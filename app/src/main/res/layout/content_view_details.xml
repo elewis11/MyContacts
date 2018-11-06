@@ -43,7 +43,7 @@
 
             <EditText
                 android:id="@+id/ViewDetailsNameEditText"
-                android:layout_width="266dp"
+                android:layout_width="236dp"
                 android:layout_height="wrap_content"
                 android:editable="false"
                 android:ems="10"

@@ -82,17 +82,8 @@ public class EditDetails extends AppCompatActivity {
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
-     /*       case R.id.action_delete_contact:
-                //initialize an Intent for the Edit Activity, start intent, return true if the id in the item selected is for the Edit Activity.
-                intent = new Intent(this, DeleteContact.class);
-                intent.putExtra("_id", id);
-                startActivity(intent);
+         /*   case R.id.action_delete_contact:
                 return true;*/
-            case R.id.action_edit_contact:
-                //initialize an Intent for the Edit Activity, start intent, return true if the id in the item selected is for the Edit Activity.
-                intent = new Intent(this, EditDetails.class);
-                startActivity(intent);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

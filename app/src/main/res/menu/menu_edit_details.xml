@@ -5,8 +5,9 @@
     tools:context="com.example.erika.mycontacts.EditDetails">
 
     <item
-        android:id="@+id/action_edit_contact"
+        android:id="@+id/action_save_contact"
         android:onClick="editContact"
+        android:orderInCategory="1"
         android:title="@string/action_save"
         app:showAsAction="always"/>
     <item
@@ -24,5 +25,4 @@
         android:orderInCategory="3"
         android:title="@string/action_delete_contact"
         app:showAsAction="never" />
-
 </menu>
