@@ -104,7 +104,24 @@ public class EditDetails extends AppCompatActivity {
      * @param menuItem
      */
     public void editContact(MenuItem menuItem){
+        String name = EditableNameEditText.getText().toString();
+        String address = EditableAddressEditText.getText().toString();
+        String phone = EditableNumberEditText.getText().toString();
+        String email = EditableEmailEditText.getText().toString();
 
+        bundle = this.getIntent().getExtras();
+
+        // get the id in the Bundle
+        id = bundle.getLong("_id");
+
+
+        dbHandler.updateContactList((int) id, name, address, phone, email);
+
+        Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();
+
+        /* goes back to the MainActivity after the contact has been added */
+        intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
