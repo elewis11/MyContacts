@@ -1,14 +1,17 @@
 package com.example.erika.mycontacts;
 
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +33,7 @@ public class ViewDetails extends AppCompatActivity {
     long id;
 
     // declaring a DBHandler
-    DBHandler dbHandler;
+    static DBHandler dbHandler;
 
     EditText ViewDetailsNameEditText;
     EditText ViewDetailsAddressEditText;
@@ -86,24 +89,23 @@ public class ViewDetails extends AppCompatActivity {
         //get the id of the item selected
         switch(item.getItemId()){
             case R.id.action_home:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the View Details Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_add_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Add Contacts Activity, start intent, return true if the id in the item selected is for the View Details Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
             case R.id.action_edit_contact:
-                //initialize an Intent for the View Details Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Edit Details Activity, start intent, return true if the id in the item selected is for the View Details Activity.
                 intent = new Intent(this, EditDetails.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);
                 return true;
             case R.id.action_delete_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
-                deleteContactList();
+               deleteContactList();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,42 +113,93 @@ public class ViewDetails extends AppCompatActivity {
     }
 
     public void deleteContactList(){
+        ViewDetails.DeleteContact foo = new ViewDetails.DeleteContact();
+        foo.setArguments(bundle);
+        foo.show(getSupportFragmentManager(), "sfm");
+    }
+
+    public static class DeleteContact extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            Bundle bundle = this.getArguments();
+            final long id = bundle.getLong("_id");
+
+            builder.setMessage("Are you sure you want to delete this contact?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int diaId) {
+
+                            dbHandler.deleteContactList((int) id);
+
+                           // goes back to the MainActivity after the contact has been added
+                      /*      intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);*/
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int diaId) {
+                            // User cancelled the dialog
+                            dialog.dismiss();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
+
+
+    /*
+
+
+    public void deleteContactList(){
         bundle = this.getIntent().getExtras();
 
         // get the id in the Bundle
         id = bundle.getLong("_id");
 
-
+        // sends the id to the deleteContactList method in the database (dbHandler object)
         dbHandler.deleteContactList((int) id);
 
+        // displays
         Toast.makeText(this, "Contact Deleted", Toast.LENGTH_LONG).show();
 
-        /* goes back to the MainActivity after the contact has been added */
+        // goes back to the MainActivity after the contact has been added
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
+    }8?
         /**
          * Method to edit the contact. Receives a MenuItem parameter (button in the menu)
          *//*
-        public void deleteContact(){
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    public Dialog onCreateDialog(Bundle bundle) {
+        // Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Are you sure you want to delete this contact?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int diaId) {
 
-            builder.setMessage("Are you sure you want to delete this contact?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                              Toast.makeText(ViewDetails.this, "Contact Deleted", Toast.LENGTH_LONG).show();
-                            /*deleteContact(id);*/
-         /*               }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Toast.makeText(ViewDetails.this, "Contact Not Deleted", Toast.LENGTH_LONG).show();
-                            // User cancelled the dialog
-                        }
-                    });
-            // Create the AlertDialog object and return it
-           builder.create();
-        }*/
+                        bundle = this.getIntent().getExtras();
+
+                        // get the id in the Bundle
+                        id = bundle.getLong("_id");
+
+
+                        dbHandler.deleteContactList((int) id);
+
+                        Toast.makeText(this, "Contact Deleted", Toast.LENGTH_LONG).show();
+
+                        goes back to the MainActivity after the contact has been added
+                                intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int diaId) {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        return builder.create();
+    }*/
 }

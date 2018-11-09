@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
-                /*    intent.putExtra("_id", id);*/
                 startActivity(intent);
             }
         });
@@ -82,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //get the id of the item selected
         switch(item.getItemId()){
-            case R.id.action_home:
+          /*  case R.id.action_home:
                 //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                return true;
+                return true;*/
             case R.id.action_add_contact:
-                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
+                //initialize an Intent for the Add Contact Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method gets called when the fabCreateList floating action button gets clicked.
-     * It starts the Create List Activity.
+     * It starts the Contact List Activity.
      * @param view because the fabCreateList floating action button is considered a view, we must pass the method a View object.
      */
     public void openContactLists(View view){

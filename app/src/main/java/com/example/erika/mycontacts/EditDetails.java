@@ -17,6 +17,7 @@ public class EditDetails extends AppCompatActivity {
     // declare an Intent - used to start Activities
     Intent intent;
 
+    // declare a bundle to hold information passed to it
     Bundle bundle;
 
     // declare a long to store the id passed from the Main Activity
@@ -25,6 +26,7 @@ public class EditDetails extends AppCompatActivity {
     // declaring a DBHandler
     DBHandler dbHandler;
 
+    // declare editable text fields
     EditText EditableNameEditText;
     EditText EditableAddressEditText;
     EditText EditableNumberEditText;
@@ -73,12 +75,12 @@ public class EditDetails extends AppCompatActivity {
         //get the id of the item selected
         switch(item.getItemId()){
             case R.id.action_home:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_add_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Add Contact Activity, start intent, return true if the id in the item selected is for the Add Contact Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
@@ -110,7 +112,7 @@ public class EditDetails extends AppCompatActivity {
 
         Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();
 
-        /* goes back to the MainActivity after the contact has been added */
+        // goes back to the MainActivity after the contact has been added
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

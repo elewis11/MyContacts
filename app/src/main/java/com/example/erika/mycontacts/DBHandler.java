@@ -54,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper {
         //insert values into the contact list table
         db.insert(TABLE_CONTACT_LIST, null, values);
 
-        //close reference to shopper database
+        //close reference to contact database
         db.close();
     }
 
@@ -153,14 +153,9 @@ public class DBHandler extends SQLiteOpenHelper {
     public void updateContactList(int id, String name, String address, String phone, String email) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String dbString = "";
-
-        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
-                " WHERE " + COLUMN_LIST_ID + " = " + id;
-
         ContentValues values = new ContentValues();
 
-
+        // sets the value in the table equal to what's present in the passed value (the user's text field)
         values.put(COLUMN_LIST_NAME, name);
         values.put(COLUMN_LIST_ADDRESS, address);
         values.put(COLUMN_LIST_PHONE, phone);
@@ -176,15 +171,10 @@ public class DBHandler extends SQLiteOpenHelper {
     public void deleteContactList(int id) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String dbString = "";
-
-        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
-                " WHERE " + COLUMN_LIST_ID + " = " + id;
-
-        //insert values into the contact list table
+        //delete a contact from the contact list table
         db.delete(TABLE_CONTACT_LIST, COLUMN_LIST_ID + " = " + id, null);
 
-        //close reference to shopper database
+        //close reference to contact database
         db.close();
     }
 }
