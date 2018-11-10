@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.erika.mycontacts.MainActivity">
 
-    <item
+<!--    <item
         android:id="@+id/action_home"
         android:orderInCategory="1"
         android:title="@string/action_home"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
     <item
         android:id="@+id/action_add_contact"
         android:orderInCategory="2"
