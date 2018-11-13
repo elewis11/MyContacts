@@ -47,6 +47,8 @@ public class ViewDetails extends AppCompatActivity {
         setContentView(R.layout.activity_view_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //set the back button in the toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bundle = this.getIntent().getExtras();
 
@@ -88,6 +90,13 @@ public class ViewDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //get the id of the item selected
         switch(item.getItemId()){
+
+            case android.R.id.home:
+                //utilizes the back button in the action bar to go back to the previous activity
+                finish();
+                //refreshes the page that's being gone back to
+                recreate();
+                return true;
             case R.id.action_home:
                 //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the View Details Activity.
                 intent = new Intent(this, MainActivity.class);
@@ -105,16 +114,21 @@ public class ViewDetails extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_delete_contact:
-               deleteContactList();
+                deleteContactList();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+
     public void deleteContactList(){
+        //creates a new ViewDetails object of DeleteContact
         ViewDetails.DeleteContact foo = new ViewDetails.DeleteContact();
+        //passes a bundle to the DeleteContact class
         foo.setArguments(bundle);
+        //shows the dialog
         foo.show(getSupportFragmentManager(), "sfm");
     }
 
@@ -131,9 +145,10 @@ public class ViewDetails extends AppCompatActivity {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int diaId) {
 
+                            //delete the contact
                             dbHandler.deleteContactList((int) id);
 
-                           // goes back to the MainActivity after the contact has been added
+                            // goes back to the MainActivity after the contact has been deleted
                       /*      intent = new Intent(this, MainActivity.class);
                             startActivity(intent);*/
                         }
@@ -149,10 +164,7 @@ public class ViewDetails extends AppCompatActivity {
         }
     }
 
-
     /*
-
-
     public void deleteContactList(){
         bundle = this.getIntent().getExtras();
 
@@ -168,38 +180,5 @@ public class ViewDetails extends AppCompatActivity {
         // goes back to the MainActivity after the contact has been added
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }8?
-        /**
-         * Method to edit the contact. Receives a MenuItem parameter (button in the menu)
-         *//*
-    public Dialog onCreateDialog(Bundle bundle) {
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Are you sure you want to delete this contact?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int diaId) {
-
-                        bundle = this.getIntent().getExtras();
-
-                        // get the id in the Bundle
-                        id = bundle.getLong("_id");
-
-
-                        dbHandler.deleteContactList((int) id);
-
-                        Toast.makeText(this, "Contact Deleted", Toast.LENGTH_LONG).show();
-
-                        goes back to the MainActivity after the contact has been added
-                                intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int diaId) {
-                        // User cancelled the dialog
-                    }
-                });
-        // Create the AlertDialog object and return it
-        return builder.create();
     }*/
 }
