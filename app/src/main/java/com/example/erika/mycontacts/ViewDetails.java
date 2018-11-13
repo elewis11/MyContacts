@@ -26,6 +26,7 @@ public class ViewDetails extends AppCompatActivity {
 
     // declare an Intent - used to start Activities
     Intent intent;
+    private static Context mContext;
 
     Bundle bundle;
 
@@ -77,7 +78,8 @@ public class ViewDetails extends AppCompatActivity {
         // set title of the View Details activity to contact's name
         this.setTitle(contactListName);
 
-
+        //set the current context
+        mContext = this;
     }
 
     @Override
@@ -148,9 +150,10 @@ public class ViewDetails extends AppCompatActivity {
                             //delete the contact
                             dbHandler.deleteContactList((int) id);
 
-                            // goes back to the MainActivity after the contact has been deleted
-                      /*      intent = new Intent(this, MainActivity.class);
-                            startActivity(intent);*/
+                            // goes back to the MainActivity after the contact has been deleted by
+                            //using the static mContext provided in the declarations
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            startActivity(intent);
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
