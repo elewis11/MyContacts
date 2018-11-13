@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -46,6 +47,8 @@ public class AddContact extends AppCompatActivity {
         addressEditText = (EditText) findViewById(R.id.addressEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
+
+        phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         //initialize DBHandler
         dbhandler = new DBHandler(this, null);

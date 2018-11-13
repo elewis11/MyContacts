@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="phone"
-                android:maxLength="12" />
+                android:maxLength="14" />
 
         </TableRow>
 
