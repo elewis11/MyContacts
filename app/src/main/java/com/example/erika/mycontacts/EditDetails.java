@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,15 +120,29 @@ public class EditDetails extends AppCompatActivity {
         // get the id in the Bundle
         id = bundle.getLong("_id");
 
-        //runs the updateContactList method in the DBHandler class
-        dbHandler.updateContactList((int) id, name, address, phone, email);
+        if (name.trim().isEmpty()){
+            //returns an error if the name isn't valid
+            EditableNameEditText.setError("Please enter a name");
+        }
+        else if(!email.trim().isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            //returns an error if the email address isn't valid
+            EditableEmailEditText.setError("Please enter a valid email address");
+        }
+        else if(!phone.trim().isEmpty() && phone.trim().length() < 14){
+            //returns an error if the phone number isn't valid
+            EditableNumberEditText.setError("Please enter a valid phone number");
+        }
+        else {
+            //runs the updateContactList method in the DBHandler class
+            dbHandler.updateContactList((int) id, name, address, phone, email);
 
-        //makes a toast appear after a user successfully updates a contact's information
-        Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();
+            //makes a toast appear after a user successfully updates a contact's information
+            Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();
 
-        /* goes back to the MainActivity after the contact has been edited */
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            // goes back to the MainActivity after the contact has been edited
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

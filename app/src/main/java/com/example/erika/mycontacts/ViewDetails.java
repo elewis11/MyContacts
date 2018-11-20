@@ -124,7 +124,6 @@ public class ViewDetails extends AppCompatActivity {
     }
 
 
-
     public void deleteContactList(){
         //creates a new ViewDetails object of DeleteContact
         ViewDetails.DeleteContact foo = new ViewDetails.DeleteContact();

@@ -79,7 +79,6 @@ public class AddContact extends AppCompatActivity {
             case R.id.action_add_contact:
                 //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
-             /*   intent.putExtra("_id", id);*/
                 startActivity(intent);
                 return true;
             default:
@@ -116,7 +115,7 @@ public class AddContact extends AppCompatActivity {
             dbhandler.addContactList(name, address, phone, email);
             Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
 
-            /* goes back to the MainActivity after the contact has been added */
+            // goes back to the MainActivity after the contact has been added
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

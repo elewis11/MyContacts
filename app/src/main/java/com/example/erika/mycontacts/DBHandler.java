@@ -54,14 +54,14 @@ public class DBHandler extends SQLiteOpenHelper {
         //insert values into the contact list table
         db.insert(TABLE_CONTACT_LIST, null, values);
 
-        //close reference to shopper database
+        //close reference to contact database
         db.close();
     }
 
     public Cursor getContactLists() {
         SQLiteDatabase db = getWritableDatabase();
 
-        //execute select statement that selects all rows from the shopping list table and returns them as a cursor
+        //execute select statement that selects all rows from the contact list table and returns them as a cursor
         return db.rawQuery("SELECT * FROM " + TABLE_CONTACT_LIST, null);
     }
 
@@ -82,8 +82,10 @@ public class DBHandler extends SQLiteOpenHelper {
             dbString = cursor.getString(cursor.getColumnIndex("name"));
         }
 
+        //close reference to contact database
         db.close();
 
+        //return the name of the given id
         return dbString;
     }
 
@@ -105,6 +107,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.close();
 
+        //return the address of the given id
         return dbString;
     }
 
@@ -125,7 +128,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         db.close();
-
+        //return the phone number of the given id
         return dbString;
     }
 
@@ -134,6 +137,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String dbString = "";
 
+        //selects all information from the Contact List table row that matches the id sent
         String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
                 " WHERE " + COLUMN_LIST_ID + " = " + id;
 
@@ -145,46 +149,38 @@ public class DBHandler extends SQLiteOpenHelper {
             dbString = cursor.getString(cursor.getColumnIndex("email"));
         }
 
+        //close reference to contact database
         db.close();
 
+        //return the email address of the given id
         return dbString;
     }
 
     public void updateContactList(int id, String name, String address, String phone, String email) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String dbString = "";
-
-        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
-                " WHERE " + COLUMN_LIST_ID + " = " + id;
-
         ContentValues values = new ContentValues();
 
-
+        //set values equal to the column names
         values.put(COLUMN_LIST_NAME, name);
         values.put(COLUMN_LIST_ADDRESS, address);
         values.put(COLUMN_LIST_PHONE, phone);
         values.put(COLUMN_LIST_EMAIL, email);
 
-        //insert values into the contact list table
+        //update values in the contact list table based on the id sent
         db.update(TABLE_CONTACT_LIST, values, COLUMN_LIST_ID + " = " + id, null);
 
-        //close reference to shopper database
+        //close reference to contact database
         db.close();
     }
 
     public void deleteContactList(int id) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String dbString = "";
-
-        String query = "SELECT * FROM " + TABLE_CONTACT_LIST +
-                " WHERE " + COLUMN_LIST_ID + " = " + id;
-
-        //insert values into the contact list table
+        //delete all values from the contact list table based on the id sent
         db.delete(TABLE_CONTACT_LIST, COLUMN_LIST_ID + " = " + id, null);
 
-        //close reference to shopper database
+        //close reference to contact database
         db.close();
     }
 }
