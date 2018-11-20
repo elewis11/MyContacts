@@ -149,6 +149,10 @@ public class ViewDetails extends AppCompatActivity {
                             //delete the contact
                             dbHandler.deleteContactList((int) id);
 
+                            // displays toast saying the user successfully deleted the contact
+                            //using the static mContext provided in the declarations
+                            Toast.makeText(mContext, "Contact Deleted", Toast.LENGTH_LONG).show();
+
                             // goes back to the MainActivity after the contact has been deleted by
                             //using the static mContext provided in the declarations
                             Intent intent = new Intent(mContext, MainActivity.class);
