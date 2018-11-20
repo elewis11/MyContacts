@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -106,6 +107,10 @@ public class AddContact extends AppCompatActivity {
             //returns an error if the email address isn't valid
             emailEditText.setError("Please enter a valid email address");
         }
+        else if(!phone.trim().isEmpty() && phone.trim().length() < 14){
+            //returns an error if the phone number isn't valid
+            phoneEditText.setError("Please enter a valid phone number");
+        }
         else {
             //required data has been input, update the database and display a different Toast
             dbhandler.addContactList(name, address, phone, email);
@@ -116,6 +121,8 @@ public class AddContact extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 /*
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // declare a DBHandler - used to communicate with the database
     DBHandler dbHandler;
 
-    // declare a ShoppingLists CursorAdapter - used to link the data in the Cursor to the ListView
+    // declare a ContactLists CursorAdapter - used to link the data in the Cursor to the ListView
     ContactLists contactListsAdapter;
 
     // declare a ListView - used to reference the ListView in the resource file
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // initialize ListView
         contactListView = (ListView) findViewById(R.id.contactListView);
 
-        // initialize ShoppingLists CursorAdapter with the shopping list data in the database
+        // initialize ContactLists CursorAdapter with the contact list data in the database
         contactListsAdapter = new ContactLists(this, dbHandler.getContactLists(), 0);
 
         // set CursorAdapter CursorAdapter on ListView
@@ -57,15 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("_id", id);
 
                 // start the intent
-                startActivity(intent);
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        intent = new Intent(this, AddContact.class);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 startActivity(intent);
             }
         });
@@ -98,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method gets called when the fabCreateList floating action button gets clicked.
-     * It starts the Create List Activity.
+     * It starts the Add Contact Activity.
      * @param view because the fabCreateList floating action button is considered a view, we must pass the method a View object.
      */
-    public void openContactLists(View view){
-        //initialize an Intent for the Contact Lists Activity, start intent.
-        intent = new Intent(this, ContactLists.class);
+    public void openAddContact(View view){
+        //initialize an Intent for the Add Contact Activity, start intent.
+        intent = new Intent(this, AddContact.class);
         startActivity(intent);
     }
 }

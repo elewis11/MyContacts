@@ -49,16 +49,19 @@ public class EditDetails extends AppCompatActivity {
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
 
+        //initialize strings to the information stored in the database
         String contactListName = dbHandler.getContactListName((int) id);
         String contactListAddress = dbHandler.getContactListAddress((int) id);
         String contactListNumber = dbHandler.getContactListNumber((int) id);
         String contactListEmail = dbHandler.getContactListEmail((int) id);
 
+        //makes edit texts findable by their id
         EditableNameEditText = findViewById(R.id.EditableNameEditText);
         EditableAddressEditText = findViewById(R.id.EditableAddressEditText);
         EditableNumberEditText = findViewById(R.id.EditableNumberEditText);
         EditableEmailEditText = findViewById(R.id.EditableEmailEditText);
 
+        //set the edit text equal to data entered by the user
         EditableNameEditText.setText(contactListName);
         EditableAddressEditText.setText(contactListAddress);
         EditableNumberEditText.setText(contactListNumber);
@@ -84,12 +87,12 @@ public class EditDetails extends AppCompatActivity {
                 recreate();
                 return true;/*
             case R.id.action_home:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;*/
             case R.id.action_add_contact:
-                //initialize an Intent for the Create List Activity, start intent, return true if the id in the item selected is for the Create List Activity.
+                //initialize an Intent for the Add Contact Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
@@ -116,12 +119,13 @@ public class EditDetails extends AppCompatActivity {
         // get the id in the Bundle
         id = bundle.getLong("_id");
 
-
+        //runs the updateContactList method in the DBHandler class
         dbHandler.updateContactList((int) id, name, address, phone, email);
 
+        //makes a toast appear after a user successfully updates a contact's information
         Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();
 
-        /* goes back to the MainActivity after the contact has been added */
+        /* goes back to the MainActivity after the contact has been edited */
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
