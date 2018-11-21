@@ -11,7 +11,9 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class EditDetails extends AppCompatActivity {
@@ -68,7 +70,17 @@ public class EditDetails extends AppCompatActivity {
         EditableNumberEditText.setText(contactListNumber);
         EditableEmailEditText.setText(contactListEmail);
 
+        //sets the structure of an entered phone number
         EditableNumberEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+/*
+        //get the spinner from the xml.
+        Spinner dropdown = findViewById(R.id.spinner);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"", "Family", "Friends", "Work"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);*/
     }
 
     @Override
@@ -86,19 +98,20 @@ public class EditDetails extends AppCompatActivity {
                 finish();
                 //refreshes the page that's being gone back to
                 recreate();
-                return true;/*
+                return true;
             case R.id.action_home:
                 //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                return true;*/
+                return true;
             case R.id.action_add_contact:
                 //initialize an Intent for the Add Contact Activity, start intent, return true if the id in the item selected is for the Create List Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
-         /*   case R.id.action_delete_contact:
-                return true;*/
+            case R.id.action_delete_contact:
+                deleteContactList();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -133,6 +146,7 @@ public class EditDetails extends AppCompatActivity {
             EditableNumberEditText.setError("Please enter a valid phone number");
         }
         else {
+
             //runs the updateContactList method in the DBHandler class
             dbHandler.updateContactList((int) id, name, address, phone, email);
 
@@ -143,6 +157,16 @@ public class EditDetails extends AppCompatActivity {
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void deleteContactList(){
+        //creates a new EditDetails object of DeleteContact
+        DeleteContact goo = new DeleteContact();
+        goo.setContext(this);
+        //passes a bundle to the DeleteContact class
+        goo.setArguments(bundle);
+        //shows the dialog
+        goo.show(getSupportFragmentManager(), "sfm2");
     }
 
 }

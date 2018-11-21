@@ -1,26 +1,15 @@
 package com.example.erika.mycontacts;
 
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class ViewDetails extends AppCompatActivity {
 
@@ -51,6 +40,7 @@ public class ViewDetails extends AppCompatActivity {
         //set the back button in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //gets the intent and the extras placed in the intent from the Main Activity
         bundle = this.getIntent().getExtras();
 
         // get the id in the Bundle
@@ -59,7 +49,7 @@ public class ViewDetails extends AppCompatActivity {
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
 
-        // call DBHandler method that gets shopping list name
+        // call DBHandler method that gets contact list name
         String contactListName = dbHandler.getContactListName((int) id);
         String contactListAddress = dbHandler.getContactListAddress((int) id);
         String contactListNumber = dbHandler.getContactListNumber((int) id);
@@ -109,12 +99,12 @@ public class ViewDetails extends AppCompatActivity {
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_edit_contact:
+    /*        case R.id.action_edit_contact:
                 //initialize an Intent for the Edit Details Activity, start intent, return true if the id in the item selected is for the View Details Activity.
                 intent = new Intent(this, EditDetails.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);
-                return true;
+                return true;*/
             case R.id.action_delete_contact:
                 deleteContactList();
                 return true;
@@ -123,68 +113,19 @@ public class ViewDetails extends AppCompatActivity {
         }
     }
 
+    public void openEditContact(MenuItem menuItem){
+        intent = new Intent(this, EditDetails.class);
+        intent.putExtra("_id", id);
+        startActivity(intent);
+    }
 
     public void deleteContactList(){
         //creates a new ViewDetails object of DeleteContact
-        ViewDetails.DeleteContact foo = new ViewDetails.DeleteContact();
+        DeleteContact foo = new DeleteContact();
+        foo.setContext(this);
         //passes a bundle to the DeleteContact class
         foo.setArguments(bundle);
         //shows the dialog
         foo.show(getSupportFragmentManager(), "sfm");
     }
-
-    public static class DeleteContact extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-            Bundle bundle = this.getArguments();
-            final long id = bundle.getLong("_id");
-
-            builder.setMessage("Are you sure you want to delete this contact?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int diaId) {
-
-                            //delete the contact
-                            dbHandler.deleteContactList((int) id);
-
-                            // displays toast saying the user successfully deleted the contact
-                            //using the static mContext provided in the declarations
-                            Toast.makeText(mContext, "Contact Deleted", Toast.LENGTH_LONG).show();
-
-                            // goes back to the MainActivity after the contact has been deleted by
-                            //using the static mContext provided in the declarations
-                            Intent intent = new Intent(mContext, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int diaId) {
-                            // User cancelled the dialog
-                            dialog.dismiss();
-                        }
-                    });
-            // Create the AlertDialog object and return it
-            return builder.create();
-        }
-    }
-
-    /*
-    public void deleteContactList(){
-        bundle = this.getIntent().getExtras();
-
-        // get the id in the Bundle
-        id = bundle.getLong("_id");
-
-        // sends the id to the deleteContactList method in the database (dbHandler object)
-        dbHandler.deleteContactList((int) id);
-
-        // displays
-        Toast.makeText(this, "Contact Deleted", Toast.LENGTH_LONG).show();
-
-        // goes back to the MainActivity after the contact has been added
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }*/
 }

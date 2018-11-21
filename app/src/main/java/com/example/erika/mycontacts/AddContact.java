@@ -15,7 +15,9 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddContact extends AppCompatActivity {
@@ -49,10 +51,20 @@ public class AddContact extends AppCompatActivity {
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
 
+        //sets the structure of an entered phone number
         phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         //initialize DBHandler
         dbhandler = new DBHandler(this, null);
+
+        //get the spinner from the xml.
+        Spinner dropdown = findViewById(R.id.spinner);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"", "Family", "Friends", "Work"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
     }
 
     @Override
