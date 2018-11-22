@@ -44,7 +44,7 @@
 
             <EditText
                 android:id="@+id/EditableNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textCapWords|textPersonName"
@@ -68,12 +68,12 @@
 
             <EditText
                 android:id="@+id/EditableAddressEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textCapWords|textMultiLine"
-                android:singleLine="false"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:singleLine="false" />
 
         </TableRow>
 
@@ -94,7 +94,7 @@
 
             <EditText
                 android:id="@+id/EditableNumberEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="phone"
@@ -119,11 +119,34 @@
 
             <EditText
                 android:id="@+id/EditableEmailEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:maxLength="20" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/groupTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group(s):" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
         </TableRow>
 
     </TableLayout>

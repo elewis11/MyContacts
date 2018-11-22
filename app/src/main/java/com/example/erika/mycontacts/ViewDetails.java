@@ -90,23 +90,28 @@ public class ViewDetails extends AppCompatActivity {
                 recreate();
                 return true;
             case R.id.action_home:
-                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the View Details Activity.
+                //initialize an Intent for the Main Activity, start intent, return true if the id in the item selected is for the Main Activity.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_add_contact:
-                //initialize an Intent for the Add Contacts Activity, start intent, return true if the id in the item selected is for the View Details Activity.
+                //initialize an Intent for the Add Contacts Activity, start intent, return true if the id in the item selected is for the AddContacts Activity.
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
     /*        case R.id.action_edit_contact:
-                //initialize an Intent for the Edit Details Activity, start intent, return true if the id in the item selected is for the View Details Activity.
+                //initialize an Intent for the Edit Details Activity, start intent, return true if the id in the item selected is for the Edit Details Activity.
                 intent = new Intent(this, EditDetails.class);
                 intent.putExtra("_id", id);
                 startActivity(intent);
                 return true;*/
             case R.id.action_delete_contact:
                 deleteContactList();
+                return true;
+            case R.id.action_view_groups:
+                //initialize an Intent for the View Groups Activity, start intent, return true if the id in the item selected is for the View Groups Activity.
+                intent = new Intent(this, ViewGroups.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -93,6 +93,11 @@ public class AddContact extends AppCompatActivity {
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_view_groups:
+                //initialize an Intent for the View Groups Activity, start intent, return true if the id in the item selected is for the View Groups Activity.
+                intent = new Intent(this, ViewGroups.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

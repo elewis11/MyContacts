@@ -26,4 +26,9 @@
         android:orderInCategory="3"
         android:title="@string/action_delete_contact"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_view_groups"
+        android:orderInCategory="4"
+        android:title="@string/action_view_groups"
+        app:showAsAction="never" />
 </menu>

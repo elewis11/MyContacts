@@ -29,6 +29,14 @@
         <activity
             android:name=".EditDetails"
             android:label="@string/title_activity_edit_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewGroups"
+            android:label="@string/title_activity_view_groups"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditGroups"
+            android:label="@string/title_activity_edit_groups"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -72,7 +72,7 @@ public class EditDetails extends AppCompatActivity {
 
         //sets the structure of an entered phone number
         EditableNumberEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-/*
+
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner);
         //create a list of items for the spinner.
@@ -80,7 +80,7 @@ public class EditDetails extends AppCompatActivity {
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);*/
+        dropdown.setAdapter(adapter);
     }
 
     @Override
