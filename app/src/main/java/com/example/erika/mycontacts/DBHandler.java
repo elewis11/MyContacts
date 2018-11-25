@@ -31,7 +31,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 COLUMN_LIST_NAME + " TEXT, " +
                 COLUMN_LIST_ADDRESS + " TEXT, " +
                 COLUMN_LIST_PHONE + " TEXT, " +
-                COLUMN_LIST_EMAIL + " TEXT " +
+                COLUMN_LIST_EMAIL + " TEXT, " +
+                COLUMN_LIST_GROUP_NAME + " TEXT " +
                 "); " +
                 TABLE_GROUP_LIST + "(" +
                 COLUMN_LIST_GROUP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
