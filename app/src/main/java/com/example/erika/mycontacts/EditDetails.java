@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -81,6 +83,9 @@ public class EditDetails extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
+        EditableAddressEditText.addTextChangedListener(new EditTextLinesLimiter(EditableAddressEditText, 2));
+
     }
 
     @Override
@@ -159,7 +164,7 @@ public class EditDetails extends AppCompatActivity {
         }
     }
 
-    public void deleteContactList(){
+    public void deleteContactList() {
         //creates a new EditDetails object of DeleteContact
         DeleteContact goo = new DeleteContact();
         goo.setContext(this);
@@ -167,6 +172,39 @@ public class EditDetails extends AppCompatActivity {
         goo.setArguments(bundle);
         //shows the dialog
         goo.show(getSupportFragmentManager(), "sfm2");
+    }
+
+    public class EditTextLinesLimiter implements TextWatcher {
+        private EditText editText;
+        private int maxLines;
+        private String lastValue = "";
+
+        public EditTextLinesLimiter(EditText editText, int maxLines) {
+            this.editText = editText;
+            this.maxLines = maxLines;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            lastValue = charSequence.toString();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            if (editText.getLineCount() > maxLines) {
+                int selectionStart = editText.getSelectionStart() - 1;
+                editText.setText(lastValue);
+                if (selectionStart >= editText.length()) {
+                    selectionStart = editText.length();
+                }
+                editText.setSelection(selectionStart);
+            }
+        }
     }
 
 }
