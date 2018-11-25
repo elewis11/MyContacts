@@ -34,7 +34,7 @@ public class ViewGroups extends AppCompatActivity {
 
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
-
+/*
         // initialize ListView
         groupListView = (ListView) findViewById(R.id.groupListView);
 
@@ -57,7 +57,7 @@ public class ViewGroups extends AppCompatActivity {
                 // start the intent
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override

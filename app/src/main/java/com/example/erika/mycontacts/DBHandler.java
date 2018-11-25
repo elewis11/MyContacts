@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+/*
 public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "contacts.db";
@@ -198,9 +198,9 @@ public class DBHandler extends SQLiteOpenHelper {
         //execute select statement that selects all rows from the contact list table and returns them as a cursor
         return db.rawQuery("SELECT * FROM " + TABLE_GROUP_LIST, null);
     }
-}
+}*/
 
-/*
+
 public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "contacts.db";
@@ -377,4 +377,4 @@ public class DBHandler extends SQLiteOpenHelper {
         //close reference to contact database
         db.close();
     }
-}*/
+}
