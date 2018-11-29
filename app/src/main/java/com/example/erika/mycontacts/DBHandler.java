@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "contacts.db";
 
     private static final String TABLE_CONTACT_LIST = "contactlist";
@@ -42,11 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String query2 = "CREATE TABLE " + TABLE_GROUP_LIST + "(" +
                 COLUMN_LIST_GROUP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LIST_GROUP_NAME + " TEXT, " +
-                COLUMN_LIST_ID + " INTEGER, " +
-                COLUMN_LIST_NAME + " TEXT, " +
-                COLUMN_LIST_ADDRESS + " TEXT, " +
-                COLUMN_LIST_PHONE + " TEXT, " +
-                COLUMN_LIST_EMAIL + " TEXT " +
+                COLUMN_LIST_ID + " INTEGER " +
                 ");";
 
         sqLiteDatabase.execSQL(query2);
@@ -229,10 +225,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 /*
-    public void setGroupNames(String[] list){
+    public void setGroupNames(String[] list, int groupCount){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        int counter = 3;
+        int counter = groupCount;
 
         while (counter != 0) {
             values.put(COLUMN_LIST_GROUP_NAME, list[counter]);
@@ -240,11 +236,24 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }*/
 
+    public void setGroupNames(String[] list, int groupCount){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        int counter = 0;
+
+        //as long as the counter is less than the length of the String[] of groupnames, this will load the values into the database
+        while (counter < groupCount) {
+            values.put(COLUMN_LIST_GROUP_NAME, list[counter]);
+            db.insert(TABLE_GROUP_LIST, null, values);
+            counter++;
+        }
+    }
+
     public Cursor getGroupLists() {
         SQLiteDatabase db = getWritableDatabase();
 
-        //execute select statement that selects all rows from the contact list table and returns them as a cursor
-        return db.rawQuery("SELECT * FROM " + TABLE_GROUP_LIST, null);
+        //execute select statement that selects all rows from the group list table and returns them as a cursor
+        return db.rawQuery("SELECT " + COLUMN_LIST_GROUP_NAME +  " FROM " + TABLE_GROUP_LIST, null);
     }
 
     public void addContactToGroup(){

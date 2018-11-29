@@ -63,6 +63,7 @@ public class EditDetails extends AppCompatActivity {
         String contactListAddress = dbHandler.getContactListAddress((int) id);
         String contactListNumber = dbHandler.getContactListNumber((int) id);
         String contactListEmail = dbHandler.getContactListEmail((int) id);
+        String contactListGroup = dbHandler.getContactListGroup((int) id);
 
         //makes edit texts findable by their id
         EditableNameEditText = findViewById(R.id.EditableNameEditText);
@@ -70,7 +71,7 @@ public class EditDetails extends AppCompatActivity {
         EditableNumberEditText = findViewById(R.id.EditableNumberEditText);
         EditableEmailEditText = findViewById(R.id.EditableEmailEditText);
 
-        //set the edit text equal to data entered by the user
+        //set the edit text equal to the prefilled data
         EditableNameEditText.setText(contactListName);
         EditableAddressEditText.setText(contactListAddress);
         EditableNumberEditText.setText(contactListNumber);
@@ -95,6 +96,14 @@ public class EditDetails extends AppCompatActivity {
         //sets the selected item from the spinner's dropdown
         groupSpinner.set(dropdown);
 
+        //prefills the spinner with the group last added by the user
+        for(int i= 0; i < dropdown.getAdapter().getCount(); i++)
+        {
+            if(dropdown.getAdapter().getItem(i).toString().contains(contactListGroup))
+            {
+                dropdown.setSelection(i);
+            }
+        }
     }
 
     @Override
@@ -125,6 +134,11 @@ public class EditDetails extends AppCompatActivity {
                 return true;
             case R.id.action_delete_contact:
                 deleteContactList();
+                return true;
+            case R.id.action_view_groups:
+                //initialize an Intent for the View Groups Activity, start intent, return true if the id in the item selected is for the View Groups Activity.
+                intent = new Intent(this, ViewGroups.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
