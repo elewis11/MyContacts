@@ -17,6 +17,7 @@
         android:id="@+id/action_view_groups"
         android:icon="@android:drawable/sym_contact_card"
         android:orderInCategory="1"
+        android:onClick="openViewGroups"
         android:title="@string/action_view_groups"
         app:showAsAction="always" />
 </menu>

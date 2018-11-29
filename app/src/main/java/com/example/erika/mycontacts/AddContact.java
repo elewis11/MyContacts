@@ -34,6 +34,9 @@ public class AddContact extends AppCompatActivity {
     //declare DBHandler
     DBHandler dbhandler;
 
+    //declare a SpinnerActivity to interact with the item chosen by the spinner
+    SpinnerActivity groupSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +68,12 @@ public class AddContact extends AppCompatActivity {
         String[] items = new String[]{"", "Family", "Friends", "Work"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //make a new spinner activity to deal with the selection made from the spinner's dropdown
+        groupSpinner = new SpinnerActivity();
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+        //sets the selected item from the spinner's dropdown
+        groupSpinner.set(dropdown);
     }
 
     @Override
@@ -131,7 +138,7 @@ public class AddContact extends AppCompatActivity {
         }
         else {
             //required data has been input, update the database and display a different Toast
-            dbhandler.addContactList(name, address, phone, email);
+            dbhandler.addContactList(name, address, phone, email, groupSpinner.getGroupName());
             Toast.makeText(this, "Contact Added", Toast.LENGTH_LONG).show();
 
             // goes back to the MainActivity after the contact has been added

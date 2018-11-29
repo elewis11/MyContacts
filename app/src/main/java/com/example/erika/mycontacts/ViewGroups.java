@@ -34,7 +34,7 @@ public class ViewGroups extends AppCompatActivity {
 
         // initialize DBHandler
         dbHandler = new DBHandler(this, null);
-/*
+
         // initialize ListView
         groupListView = (ListView) findViewById(R.id.groupListView);
 
@@ -43,7 +43,7 @@ public class ViewGroups extends AppCompatActivity {
 
         // set CursorAdapter CursorAdapter on ListView
         groupListView.setAdapter(groupListsAdapter);
-
+/*
         // register OnItemClickListener on ListView
         groupListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

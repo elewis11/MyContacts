@@ -95,4 +95,10 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(this, AddContact.class);
         startActivity(intent);
     }
+
+    public void openViewGroups(MenuItem menuItem){
+        //initialize an Intent for the Add Contact Activity, start intent.
+        intent = new Intent(this, ViewGroups.class);
+        startActivity(intent);
+    }
 }

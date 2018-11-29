@@ -35,6 +35,10 @@ public class EditDetails extends AppCompatActivity {
     EditText EditableAddressEditText;
     EditText EditableNumberEditText;
     EditText EditableEmailEditText;
+    EditText EditableGroupEditText;
+
+    //declare a SpinnerActivity to interact with the item chosen by the spinner
+    SpinnerActivity groupSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,16 +79,21 @@ public class EditDetails extends AppCompatActivity {
         //sets the structure of an entered phone number
         EditableNumberEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
+        //sets the maximum amount of lines that can be entered to 2
+        EditableAddressEditText.addTextChangedListener(new EditTextLinesLimiter(EditableAddressEditText, 2));
+
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner);
         //create a list of items for the spinner.
         String[] items = new String[]{"", "Family", "Friends", "Work"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //make a new spinner activity to deal with the selection made from the spinner's dropdown
+        groupSpinner = new SpinnerActivity();
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-
-        EditableAddressEditText.addTextChangedListener(new EditTextLinesLimiter(EditableAddressEditText, 2));
+        //sets the selected item from the spinner's dropdown
+        groupSpinner.set(dropdown);
 
     }
 
@@ -153,7 +162,7 @@ public class EditDetails extends AppCompatActivity {
         else {
 
             //runs the updateContactList method in the DBHandler class
-            dbHandler.updateContactList((int) id, name, address, phone, email);
+            dbHandler.updateContactList((int) id, name, address, phone, email, groupSpinner.getGroupName());
 
             //makes a toast appear after a user successfully updates a contact's information
             Toast.makeText(this, "Contact Updated", Toast.LENGTH_LONG).show();

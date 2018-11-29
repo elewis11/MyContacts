@@ -15,7 +15,6 @@ public class ViewDetails extends AppCompatActivity {
 
     // declare an Intent - used to start Activities
     Intent intent;
-    private static Context mContext;
 
     Bundle bundle;
 
@@ -23,12 +22,13 @@ public class ViewDetails extends AppCompatActivity {
     long id;
 
     // declaring a DBHandler
-    static DBHandler dbHandler;
+    DBHandler dbHandler;
 
     EditText ViewDetailsNameEditText;
     EditText ViewDetailsAddressEditText;
     EditText ViewDetailsNumberEditText;
     EditText ViewDetailsEmailEditText;
+    EditText ViewDetailsGroupEditText;
 
 
     @Override
@@ -54,22 +54,23 @@ public class ViewDetails extends AppCompatActivity {
         String contactListAddress = dbHandler.getContactListAddress((int) id);
         String contactListNumber = dbHandler.getContactListNumber((int) id);
         String contactListEmail = dbHandler.getContactListEmail((int) id);
+        String contactListGroup = dbHandler.getContactListGroup((int) id);
 
         ViewDetailsNameEditText = findViewById(R.id.ViewDetailsNameEditText);
         ViewDetailsAddressEditText = findViewById(R.id.ViewDetailsAddressEditText);
         ViewDetailsNumberEditText = findViewById(R.id.ViewDetailsNumberEditText);
         ViewDetailsEmailEditText = findViewById(R.id.ViewDetailsEmailEditText);
+        ViewDetailsGroupEditText = findViewById(R.id.ViewDetailsGroupEditText);
 
         ViewDetailsNameEditText.setText(contactListName);
         ViewDetailsAddressEditText.setText(contactListAddress);
         ViewDetailsNumberEditText.setText(contactListNumber);
         ViewDetailsEmailEditText.setText(contactListEmail);
+        ViewDetailsGroupEditText.setText(contactListGroup);
 
         // set title of the View Details activity to contact's name
         this.setTitle(contactListName);
 
-        //set the current context
-        mContext = this;
     }
 
     @Override
@@ -127,6 +128,7 @@ public class ViewDetails extends AppCompatActivity {
     public void deleteContactList(){
         //creates a new ViewDetails object of DeleteContact
         DeleteContact foo = new DeleteContact();
+        //gets the context from this activity and sends it along
         foo.setContext(this);
         //passes a bundle to the DeleteContact class
         foo.setArguments(bundle);
