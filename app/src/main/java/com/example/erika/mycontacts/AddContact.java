@@ -65,8 +65,10 @@ public class AddContact extends AppCompatActivity {
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner);
         //create a list of items for the spinner.
-        String[] items = new String[]{"", "Family", "Friends", "Work"};
-        dbhandler.setGroupNames(items, items.length);
+ //       String[] items = new String[]{"", "Family", "Friends", "Work"};
+ //       dbhandler.setGroupNames(items, items.length);
+        //gets the group names from the database
+        String[] items = dbhandler.getGroupNames();
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //make a new spinner activity to deal with the selection made from the spinner's dropdown
