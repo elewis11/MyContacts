@@ -65,10 +65,10 @@ public class AddContact extends AppCompatActivity {
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner);
         //create a list of items for the spinner.
- //       String[] items = new String[]{"", "Family", "Friends", "Work"};
- //       dbhandler.setGroupNames(items, items.length);
+        String[] items = new String[]{"", "Family", "Friends", "Work"};
+  //      dbhandler.setGroupNames(items, items.length);
         //gets the group names from the database
-        String[] items = dbhandler.getGroupNames();
+ //       String[] items = dbhandler.getGroupNames();
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //make a new spinner activity to deal with the selection made from the spinner's dropdown
@@ -106,11 +106,11 @@ public class AddContact extends AppCompatActivity {
                 intent = new Intent(this, AddContact.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_view_groups:
+        /*    case R.id.action_view_groups:
                 //initialize an Intent for the View Groups Activity, start intent, return true if the id in the item selected is for the View Groups Activity.
                 intent = new Intent(this, ViewGroups.class);
                 startActivity(intent);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }

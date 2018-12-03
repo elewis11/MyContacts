@@ -20,9 +20,9 @@
         android:orderInCategory="2"
         android:title="@string/action_add_contact"
         app:showAsAction="never" />
-    <item
+ <!--   <item
         android:id="@+id/action_view_groups"
         android:orderInCategory="3"
         android:title="@string/action_view_groups"
-        app:showAsAction="never" />
+        app:showAsAction="never" /> -->
 </menu>
